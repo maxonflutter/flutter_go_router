@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import '../main.dart';
+import '../cubit/cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -28,11 +28,9 @@ class LoginScreen extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // log a user in, letting all the listeners know
-                context.read<LoginInfo>().login('test-user');
-
                 // router will automatically redirect from /login to / using
                 // refreshListenable
+                context.read<LoginCubit>().login();
               },
               child: const Text('Login'),
             ),

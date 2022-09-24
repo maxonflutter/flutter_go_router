@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_go_router/main.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
+import '../cubit/cubit/login_cubit.dart';
 import '../models/models.dart';
 
 class CategoryScreen extends StatelessWidget {
@@ -10,8 +10,6 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginInfo info = context.read<LoginInfo>();
-
     List<Category> categories = Category.categories;
 
     return Scaffold(
@@ -20,8 +18,10 @@ class CategoryScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF000A1F),
         actions: [
           IconButton(
-            onPressed: info.logout,
-            tooltip: 'Logout: ${info.userName}',
+            onPressed: () {
+              context.read<LoginCubit>().logout();
+            },
+            tooltip: 'Logout',
             icon: const Icon(Icons.logout),
           )
         ],
