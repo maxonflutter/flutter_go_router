@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_go_router/models/product_model.dart';
-import 'package:go_router/go_router.dart';
 
 class ProductListScreen extends StatelessWidget {
   const ProductListScreen({Key? key}) : super(key: key);

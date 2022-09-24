@@ -23,9 +23,7 @@ class CategoryScreen extends StatelessWidget {
           return ListTile(
             title: Text(category.name),
             onTap: () {
-              return context.go(
-                context.namedLocation('product_list'),
-              );
+              return context.go('/product_list');
             },
           );
         },

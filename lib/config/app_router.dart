@@ -3,24 +3,24 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/screens.dart';
 
-// This example demonstrates how to navigate using named locations
-// instead of URLs. Instead of hardcoding the URI locations,
-// you can also use the named locations. To use this API, give
-// a unique name to each GoRoute. The name can then be used in
-// context.namedLocation to be translate back to the actual URL location.
+// This is an example for a simple two-page app. The first route '/'
+// is mapped to FirstScreen, and the second route '/screen2 is
+// mapped to SecondScreen.
+//
+// To navigate between pages, press the buttons on the pages. The onPress
+// callbacks use context.go() to navigate to another page. This is
+// equivalent to entering url to the browser url bar directly.
 
 final GoRouter router = GoRouter(
   debugLogDiagnostics: true,
   routes: <GoRoute>[
     GoRoute(
-      name: 'home',
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
         return const CategoryScreen();
       },
       routes: [
         GoRoute(
-          name: 'product_list',
           path: 'product_list',
           builder: (BuildContext context, GoRouterState state) {
             return const ProductListScreen();
@@ -29,7 +29,6 @@ final GoRouter router = GoRouter(
       ],
     ),
     // GoRoute(
-    //   name: 'product_list',
     //   path: '/product_list',
     //   builder: (BuildContext context, GoRouterState state) {
     //     return ProductListScreen();
