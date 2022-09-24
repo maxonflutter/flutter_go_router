@@ -16,58 +16,24 @@ final GoRouter router = GoRouter(
       name: 'home',
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return const CategoryScreen();
       },
+      routes: [
+        GoRoute(
+          name: 'product_list',
+          path: 'product_list',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ProductListScreen();
+          },
+        ),
+      ],
     ),
-    GoRoute(
-      name: 'family',
-      path: '/family/:fid',
-      builder: (BuildContext context, GoRouterState state) {
-        return FamilyScreen(fid: state.params['fid']!);
-      },
-    ),
-    GoRoute(
-      name: 'person',
-      path: '/person/:pid',
-      builder: (BuildContext context, GoRouterState state) {
-        return PersonScreen(
-          pid: state.params['pid']!,
-        );
-      },
-    ),
+    // GoRoute(
+    //   name: 'product_list',
+    //   path: '/product_list',
+    //   builder: (BuildContext context, GoRouterState state) {
+    //     return ProductListScreen();
+    //   },
+    // ),
   ],
 );
-
-// late final GoRouter router = GoRouter(
-//   debugLogDiagnostics: true,
-//   routes: <GoRoute>[
-//     GoRoute(
-//       name: 'home',
-//       path: '/',
-//       builder: (BuildContext context, GoRouterState state) {
-//         return const HomeScreen();
-//       },
-//       routes: <GoRoute>[
-//         GoRoute(
-//           name: 'family',
-//           path: 'family/:fid',
-//           builder: (BuildContext context, GoRouterState state) {
-//             return FamilyScreen(fid: state.params['fid']!);
-//           },
-//           routes: <GoRoute>[
-//             GoRoute(
-//               name: 'person',
-//               path: 'person/:pid',
-//               builder: (BuildContext context, GoRouterState state) {
-//                 return PersonScreen(
-//                   fid: state.params['fid']!,
-//                   pid: state.params['pid']!,
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ],
-//     ),
-//   ],
-// );
