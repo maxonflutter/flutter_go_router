@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 
 import '../screens/screens.dart';
 
-// This example demonstrates how to navigate using named locations
-// instead of URLs. Instead of hardcoding the URI locations,
-// you can also use the named locations. To use this API, give
-// a unique name to each GoRoute. The name can then be used in
-// context.namedLocation to be translate back to the actual URL location.
+// This example shows how to use path parameters and query parameters.
+// The route segments that start with ':' are treated as path
+// parameters when defining GoRoute[s]. The parameter values can
+// be accessed through GoRouterState.params.
+// The query parameters are automatically stored in GoRouterState.queryParams.
 
 final GoRouter router = GoRouter(
   debugLogDiagnostics: true,
@@ -16,58 +16,21 @@ final GoRouter router = GoRouter(
       name: 'home',
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return const CategoryScreen();
       },
-    ),
-    GoRoute(
-      name: 'family',
-      path: '/family/:fid',
-      builder: (BuildContext context, GoRouterState state) {
-        return FamilyScreen(fid: state.params['fid']!);
-      },
-    ),
-    GoRoute(
-      name: 'person',
-      path: '/person/:pid',
-      builder: (BuildContext context, GoRouterState state) {
-        return PersonScreen(
-          pid: state.params['pid']!,
-        );
-      },
+      routes: [
+        GoRoute(
+          name: 'product_list',
+          path: 'product_list/:category',
+          builder: (BuildContext context, GoRouterState state) {
+            return ProductListScreen(
+              category: state.params['category']!,
+              asc: state.queryParams['sort'] == 'asc',
+              quantity: int.parse(state.queryParams['filter'] ?? '0'),
+            );
+          },
+        ),
+      ],
     ),
   ],
 );
-
-// late final GoRouter router = GoRouter(
-//   debugLogDiagnostics: true,
-//   routes: <GoRoute>[
-//     GoRoute(
-//       name: 'home',
-//       path: '/',
-//       builder: (BuildContext context, GoRouterState state) {
-//         return const HomeScreen();
-//       },
-//       routes: <GoRoute>[
-//         GoRoute(
-//           name: 'family',
-//           path: 'family/:fid',
-//           builder: (BuildContext context, GoRouterState state) {
-//             return FamilyScreen(fid: state.params['fid']!);
-//           },
-//           routes: <GoRoute>[
-//             GoRoute(
-//               name: 'person',
-//               path: 'person/:pid',
-//               builder: (BuildContext context, GoRouterState state) {
-//                 return PersonScreen(
-//                   fid: state.params['fid']!,
-//                   pid: state.params['pid']!,
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ],
-//     ),
-//   ],
-// );
