@@ -37,8 +37,11 @@ class CategoryScreen extends StatelessWidget {
               return context.go(
                 context.namedLocation(
                   'product_list',
-                  params: <String, String>{'category': category.name},
-                  queryParams: <String, String>{'sort': 'desc', 'filter': '0'},
+                  pathParameters: <String, String>{'category': category.name},
+                  queryParameters: <String, String>{
+                    'sort': 'desc',
+                    'filter': '0'
+                  },
                 ),
               );
             },

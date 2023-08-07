@@ -30,9 +30,9 @@ class AppRouter {
             path: 'product_list/:category',
             builder: (BuildContext context, GoRouterState state) {
               return ProductListScreen(
-                category: state.params['category']!,
-                asc: state.queryParams['sort'] == 'asc',
-                quantity: int.parse(state.queryParams['filter'] ?? '0'),
+                category: state.pathParameters['category']!,
+                asc: state.uri.queryParameters['sort'] == 'asc',
+                quantity: int.parse(state.uri.queryParameters['filter'] ?? '0'),
               );
             },
           ),
@@ -46,7 +46,7 @@ class AppRouter {
     ],
     redirect: (BuildContext context, GoRouterState state) {
       final bool loggedIn = loginCubit.state.status == AuthStatus.authenticated;
-      final bool loggingIn = state.subloc == '/login';
+      final bool loggingIn = state.matchedLocation == '/login';
       if (!loggedIn) {
         return loggingIn ? null : '/login';
       }

@@ -34,8 +34,8 @@ class ProductListScreen extends StatelessWidget {
               String sort = asc ? 'desc' : 'asc';
               return context.goNamed(
                 'product_list',
-                params: <String, String>{'category': category},
-                queryParams: <String, String>{'sort': sort},
+                pathParameters: <String, String>{'category': category},
+                queryParameters: <String, String>{'sort': sort},
               );
             },
             tooltip: 'Sort the products asc/desc',
@@ -45,8 +45,8 @@ class ProductListScreen extends StatelessWidget {
             onPressed: () {
               return context.goNamed(
                 'product_list',
-                params: <String, String>{'category': category},
-                queryParams: <String, String>{'filter': '10'},
+                pathParameters: <String, String>{'category': category},
+                queryParameters: <String, String>{'filter': '10'},
               );
             },
             tooltip: 'Filter the products',
